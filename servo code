@@ -1,0 +1,37 @@
+/* Sweep
+ by BARRAGAN <http://barraganstudio.com>
+ This example code is in the public domain.
+
+ modified 8 Nov 2013
+ by Scott Fitzgerald
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/Sweep
+*/
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  // Sweep the servo from 0° to 180° for 2 seconds
+  for (pos = 0; pos <= 180; pos++) {
+    myservo.write(pos);  // move the servo to the current position
+    delay(15);           // wait for the servo to reach the position
+  }
+
+  delay(2000); // wait for 2 seconds after the sweep
+
+  // After the sweep, hold the servo at 90° position
+  myservo.write(90);   // move the servo to 90°
+
+  // Keep the servo at 90° indefinitely
+  while (true) {
+    delay(100); // keep the servo at 90°
+  }
+}
